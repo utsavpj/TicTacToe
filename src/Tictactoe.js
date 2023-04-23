@@ -37,6 +37,7 @@ function Tictactoe() {
                 squares[pattern[0]]=== squares[pattern[1]] &&
                 squares[pattern[1]]=== squares[pattern[2]] 
             ){
+                console.log('winner:', squares[pattern[0]]);
                 setWinner(squares[pattern[0]]);
             }
         });
@@ -69,6 +70,12 @@ function Tictactoe() {
     return <td onClick={() => handleClick(num)}>{cells[num]}</td>;
   };
 
+  const playAgainClick = () => {
+    setTurn('X');
+    setCells(Array(9).fill(''));
+    setWinner(null); 
+  }
+
   return (
     <div className="container">
       
@@ -98,9 +105,8 @@ function Tictactoe() {
       </table>
       {winner && (
         <div>
-        {console.log({winner})}
         <p>{winner} is the winner!!</p>
-        <button>Play again</button>
+        <button onClick={playAgainClick}>Play again</button>
         </div>
       )}
     </div>
